@@ -1,0 +1,26 @@
+{
+  "name": "btsync",
+  "version": "0.1.0",
+  "description": "BTSync for unRAID",
+  "authors": "Nic Aitch <nic@nicinabox.com>",
+  "dependencies": {
+    "glibc": "2.11.1"
+  },
+  "license": "MIT",
+  "arch": "noarch",
+  "build": "unraid",
+  "prefix": {
+    "usr/local": ["bin"],
+    "usr/docs/boiler-btsync": [
+      "README.*"
+    ],
+    "var/log/boiler/boiler-btsync": [
+      "boiler.json"
+    ]
+  },
+  "post_install": [
+    "mkdir -p /boot/custom/.sync",
+    "btsync --config /boot/custom/config/btsync.json",
+    "echo \"Open http://admin:password@`hostname`:8888 to configure BTSync\""
+  ]
+}
